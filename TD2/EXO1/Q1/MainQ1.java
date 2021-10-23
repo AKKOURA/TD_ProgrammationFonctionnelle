@@ -1,4 +1,5 @@
-public class Main  {
+public class MainQ1
+ {
     public static void main(String[] args){
         Somme<Integer> sommeInteger = ( Integer x,Integer y)->{return x+y;};
         System.out.println(sommeInteger.sommer(5,1));
