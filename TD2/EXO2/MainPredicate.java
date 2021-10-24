@@ -13,30 +13,28 @@ public class MainPredicate {
         Predicate<Double> poidsTropLourd = (Double poids  )-> poids >150.0;
 
         // taille incorrecte (par composition) 
-        Predicate <Integer>  inCorrectTaille =
-        (Integer taille ) -> tailleTropPetite.test(90) && tailleTropGrande.test(100); //revoie false 
+        Predicate <Integer>  inCorrectTaille =tailleTropPetite.or(tailleTropGrande);
 
         // taille correcte (par composition) 
-        Predicate <Integer>  correctTaille =
-        (Integer taille ) -> tailleTropPetite.test(90) && tailleTropGrande.test(300); //revoie true
- 
+        Predicate <Integer>  correctTaille =inCorrectTaille.negate();
 
        // poids correct (par composition)
-       Predicate<Double> inCorrectPoids = 
-       (Double poids) -> poidsTropLourd.test(100.0) || poidsTropLourd.test(150.0);  //revoie false 
+       Predicate<Double> correctPoids = poidsTropLourd.negate();
        
         //accès autorisé (par composition)
+        Predicate <Paire<Integer,Double>> predicateCorrect =(Paire<Integer,Double> val)-> val.fst>100 && val.fst>200 && val.snd<150.0 ;
+        System.out.println(predicateCorrect.test(new Paire(150,140.5)));
+        
+
 
         // test 
-        Predicate <Paire<Integer,Double>>  taillepetiteAndPoidsLourd =(Paire<Integer,Double> val)-> val.fst<100   && val.snd>150.0 ;  
-        System.out.println(taillepetiteAndPoidsLourd.test(new Paire(1,1.5)));
+        // Predicate <Paire<Integer,Double>>  predicateCorrect =(Paire<Integer,Double> val)-> val.fst<100   && val.snd>150.0 ;  
+        // System.out.println(predicateCorrect.test(new Paire(1,1.5)));
         
-        List<Integer> elemIntegers = Arrays.asList(100,50,70);
-        List<Predicate<Integer>> elemsPredicates =Arrays.asList(tailleTropPetite,tailleTropGrande);
+        List<Integer> elemIntegers = Arrays.asList(100,50,300);
+        List<Predicate<Integer>> elemsPredicates =Arrays.asList(tailleTropGrande,tailleTropPetite);
         List<Integer> elemList = filtragePredicatif(elemsPredicates,elemIntegers);
-        System.out.println(elemList);
- 
-         
+        System.out.println(elemList);   
     
      } 
      //Q2
@@ -46,8 +44,7 @@ public class MainPredicate {
             for(int j=0;j<elems.size();j++){
                 if(predicates.get(i).test(elems.get(j))==true){
                     list.add(elems.get(j));
-                }
-            
+                }   
             }
            
         }

@@ -22,7 +22,8 @@ public class Main {
     map.put(2, "bar");
     map.put(3, "baz");
 
-    ToString<Map<Integer, String>> mapToString =(Map<Integer, String> mapp)->{  mapp.forEach((k, v) -> System.out.print( k + " : " + v+ " , ")); return "" ;   };
+    ToString<Map<Integer, String>> mapToString =(Map<Integer, String> mapp)->
+    {  mapp.forEach((k, v) -> System.out.print( k + " : " + v+ " , ")); return "" ;   };
     System.out.println(mapToString .convertir(map)); 
     
 
