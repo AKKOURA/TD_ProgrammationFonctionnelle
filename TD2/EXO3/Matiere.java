@@ -1,5 +1,3 @@
-package td2.universite;
-
 public class Matiere {
     private String nom;
 

@@ -1,5 +1,3 @@
-package td2.universite;
-
 import java.util.Map;
 
 public class UE {
@@ -33,3 +31,4 @@ public class UE {
         return nom.hashCode();
     }
 }
+
