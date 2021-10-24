@@ -22,9 +22,32 @@ public class Main {
         e3.noter(m1, 18.0);
         e3.noter(m2, 5.0);
         e3.noter(m3, 14.0);
+        Predicate<Etudiant> aNoteEliminatoire = (Etudiant EtuNote)->{EtuNote.notes().forEach((k,v)->v<15))};
+        afficheSi(enTete, aNoteEliminatoire, a1);
 
     }
-    String affichSi(String entete,Predicate<Etudiant,Annee> pred){
-        
+    //Q1
+    public static void afficheSi(String enTete, Predicate<Etudiant> predSudent, Annee annee) {
+        System.out.println(enTete);
+
+        for (Etudiant elem : annee.etudiants()) {
+            if (predSudent.test(elem)) {
+                System.out.println(elem.toString());
+            }
+        }
     }
+    //Q2
+    public static void aDEF(String enTete, Predicate<Etudiant> predSudent, Annee annee){
+        for (Etudiant elem : annee.etudiants()) {
+            if (elem.toString().contains("DEF")) {
+                afficheSi(enTete, predSudent, annee);
+            }
+        }
+    }
+
+    //Q3
+        
+       
+    }
+    
 }
