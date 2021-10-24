@@ -21,7 +21,7 @@ public class Main {
 	// ToString<Map<String, String>> mapToString =map->map.stream().reduce("", (Map<String, String> e)->e.getKey() + " : " + e.getValue());
     // ToString<Map<String,String>> mapToString =hmap.forEach((Map.Entry<String, String> entry)-> entry.getKey() + " : " + entry.getValue() );
     // hmap.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
-    Map<Integer, String> map = new HashMap<>();
+    Map<Integer, String> map = new HashMap<Integer, String>();
     map.put(1, "foo");
     map.put(2, "bar");
     map.put(3, "baz");
