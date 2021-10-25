@@ -22,7 +22,7 @@ public class Main {
         e3.noter(m1, 18.0);
         e3.noter(m2, 5.0);
         e3.noter(m3, 14.0);
-        Predicate<Etudiant> aNoteEliminatoire = (Etudiant EtuNote)->{EtuNote.notes().forEach((k,v)->v<15))};
+        Predicate<Etudiant> aNoteEliminatoire = (Etudiant EtuNote)->{EtuNote.notes().forEach((k,v)->v<(6/20)))};
         afficheSi(enTete, aNoteEliminatoire, a1);
 
     }
