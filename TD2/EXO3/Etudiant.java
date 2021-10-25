@@ -2,6 +2,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Predicate;
 
 public class Etudiant {
     private String prenom;
@@ -71,5 +72,18 @@ public class Etudiant {
             }
         }
         return rtr.toString();
+    }
+
+    public Double moyenneEtudiant(Etudiant etu, Annee annee){
+        double moy =  0;
+        int sommeEcts = 0;
+        for (UE ue :annee.ues() ) {
+            for (Map.Entry<Matiere, Integer>  ects : ue.ects().entrySet()) {
+                moy += etu.notes.get(ects.getKey())*ects.getValue();
+                sommeEcts += ects.getValue();
+            }    
+        }
+        return moy/sommeEcts;
+
     }
 }

@@ -46,7 +46,7 @@ public class Main {
         return false;
      };
      afficheSi("**LES ETUDIANT DEFAILLANTS", aDEF, a1);
-     System.out.println(" la moyenne de l'étudiant " +e1.nom() + "est" + e1.moyenneEtudiant(e1, aDEF ,));
+     System.out.println(" la moyenne de l'étudiant " +e1.nom() + "est" + e1.moyenneEtudiant(e1, a1));
 
     }
     public static void afficheSi(String enTete, Predicate<Etudiant> predSudent, Annee annee) {

@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.*;
 public class MainPredicate {
@@ -23,22 +22,35 @@ public class MainPredicate {
        
         //accès autorisé (par composition)
         Predicate <Paire<Integer,Double>> predicateCorrect =correctPoids.and(correctTaille);
-        
-        List<Integer> elemIntegers = Arrays.asList(100,50,300);
-        List<Predicate<Paire<Integer,Double>>> elemsPredicates =Arrays.asList(tailleTropGrande,tailleTropPetite);
-        List<Integer> elemList = filtragePredicatif(elemsPredicates,elemIntegers);
-        System.out.println(elemList);   
+
+        List<Predicate<Paire<Integer,Double>>> listpredicats = new ArrayList<>();
+        // listpredicats.add(tailleTropGrande);
+        listpredicats.add(tailleTropPetite);
+        listpredicats.add(poidsTropLourd );
+
+        Paire<Integer,Double> p1 = new Paire<>(50,200.0);
+        Paire<Integer,Double> p2 = new Paire<>(144,0.0);
+        Paire<Integer,Double> p3 = new Paire<>(220,50.0);
+
+        List<Paire<Integer,Double>> listtaille = new ArrayList<>();
+        listtaille.add(p1);
+        listtaille.add(p2);
+        listtaille.add(p3);
+
+        System.out.println(filtragePredicatif(listpredicats, listtaille));
      } 
      //Q2
-     static <T,S,V> List<T> filtragePredicatif(List<Predicate<Paire<S,V>>> predicates, List<T> elems){
+     static <T> List<T> filtragePredicatif(List<Predicate<T>> predicates, List<T> elems){
         List<T> list = new ArrayList<T>() ;
-        for(Predicate i :predicates){
-            for(int j=0;j<elems.size();j++){
-                if(i.test(elems.get(j))==true){
-                    list.add(elems.get(j));
+        for(T i :elems){
+            for(Predicate<T> j : predicates){
+                if (j.test(i)==true){
+                    if(!list.contains(i)){
+                        list.add(i);
+                    }
+                    
                 }   
-            }
-           
+            }     
         }
         return list;
         
