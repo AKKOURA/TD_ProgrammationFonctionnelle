@@ -22,32 +22,44 @@ public class Main {
         e3.noter(m1, 18.0);
         e3.noter(m2, 5.0);
         e3.noter(m3, 14.0);
-        Predicate<Etudiant> aNoteEliminatoire = (Etudiant EtuNote)->{EtuNote.notes().forEach((k,v)->v<(6/20)))};
-        afficheSi(enTete, aNoteEliminatoire, a1);
+        afficheSi("**TOUS LES ETUDIANTS ", a->true, a1);
+
+        Predicate<Etudiant> aNoteEliminatoire = (etud)->{
+            for (Double note : etud.notes().values()) {
+                if(note<6)
+                return true;        
+            }
+            return false;
+        };
+      afficheSi("**ETUDIANTS AVEC NOTE ELIMINATOIRE ", aNoteEliminatoire, a1);
+           
+     //Q2
+     Predicate<Etudiant> aDEF  = (etud)->{
+        for (UE ue : etud.annee().ues()) {
+            for(Map.Entry<Matiere,Integer> ects:ue.ects().entrySet()){
+                 //l'etudiant qui n'a pas de note pour une matiere ou plus
+                 if(!etud.notes().containsKey(ects.getKey())){
+                    return true;
+                }
+            }
+        }        
+        return false;
+     };
+     afficheSi("**LES ETUDIANT DEFAILLANTS", aDEF, a1);
+     System.out.println(" la moyenne de l'étudiant " +e1.nom() + "est" + e1.moyenneEtudiant(e1, aDEF ,));
 
     }
-    //Q1
     public static void afficheSi(String enTete, Predicate<Etudiant> predSudent, Annee annee) {
         System.out.println(enTete);
-
         for (Etudiant elem : annee.etudiants()) {
             if (predSudent.test(elem)) {
                 System.out.println(elem.toString());
             }
         }
     }
-    //Q2
-    public static void aDEF(String enTete, Predicate<Etudiant> predSudent, Annee annee){
-        for (Etudiant elem : annee.etudiants()) {
-            if (elem.toString().contains("DEF")) {
-                afficheSi(enTete, predSudent, annee);
-            }
-        }
-    }
 
-    //Q3
+    
         
        
-    }
     
 }
